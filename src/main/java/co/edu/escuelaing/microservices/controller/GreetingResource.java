@@ -1,4 +1,4 @@
-package co.edu.escuelaing.microservices;
+package co.edu.escuelaing.microservices.controller;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
