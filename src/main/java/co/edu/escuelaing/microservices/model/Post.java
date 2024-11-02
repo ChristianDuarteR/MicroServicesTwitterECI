@@ -11,18 +11,37 @@ import lombok.Setter;
 @Setter
 public class Post extends PanacheMongoEntity {
 
-    private User author;
-
-    private String title;
-
+    private String id;
     private String content;
+    private String createdAt;
 
-    private Stream stream;
-
-    public Post(User user, String title, String content, Stream stream) {
-        this.author = user;
-        this.title = title;
+    public Post(String id, String content, String createdAt) {
+        this.id = id;
         this.content = content;
-        this.stream = stream;
+        this.createdAt = createdAt;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 }
