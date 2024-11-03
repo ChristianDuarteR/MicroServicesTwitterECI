@@ -1,7 +1,6 @@
 package co.edu.escuelaing.microservices.model;
 
 import io.quarkus.mongodb.panache.PanacheMongoEntity;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,22 +10,22 @@ import lombok.Setter;
 @Setter
 public class Post extends PanacheMongoEntity {
 
-    private String id;
+    private String postId;
     private String content;
     private String createdAt;
 
     public Post(String id, String content, String createdAt) {
-        this.id = id;
+        this.postId = id;
         this.content = content;
         this.createdAt = createdAt;
     }
 
-    public String getId() {
-        return id;
+    public String getPostId() {
+        return postId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setPostId(String postId) {
+        this.postId = postId;
     }
 
     public String getContent() {

@@ -4,10 +4,10 @@ import co.edu.escuelaing.microservices.model.Post;
 import co.edu.escuelaing.microservices.model.User;
 import io.quarkus.mongodb.panache.PanacheMongoRepository;
 import jakarta.enterprise.context.ApplicationScoped;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 
-@ApplicationScoped
-public class UserRepository implements PanacheMongoRepository<User> {
-    public User findByUserName(String userName) {
-        return find("userName", userName).firstResult();
-    }
+@Repository
+public interface UserRepository extends MongoRepository<User,String> {
+
 }

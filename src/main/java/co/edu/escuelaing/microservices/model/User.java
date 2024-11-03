@@ -1,23 +1,17 @@
 package co.edu.escuelaing.microservices.model;
 
 
-import io.quarkus.mongodb.panache.PanacheMongoEntity;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.beans.ConstructorProperties;
-import java.lang.annotation.Documented;
-import java.util.HashMap;
 import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Document("User")
-public class User extends PanacheMongoEntity {
+public class User{
     @Id
     private String id;
     private String userName;
@@ -25,8 +19,6 @@ public class User extends PanacheMongoEntity {
     private String email;
     private List<Stream> streams;
 
-    //No creo que sea necesario un password
-    //private String password;
 
     public User(String id, String userName, String fullName, String email, List<Stream> streams) {
         this.id = id;

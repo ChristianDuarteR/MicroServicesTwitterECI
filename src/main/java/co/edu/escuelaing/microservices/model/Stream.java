@@ -12,21 +12,21 @@ import java.util.UUID;
 @Setter
 public class Stream {
     @Id
-    private String id;
+    private String streamId;
     private List<Post> posts;
 
 
     public Stream(String id, List<Post> posts) {
-        this.id = id;
+        this.streamId = id;
         this.posts = posts;
     }
 
-    public String getId() {
-        return id;
+    public String getStreamId() {
+        return streamId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setStreamId(String streamId) {
+        this.streamId = streamId;
     }
 
     public List<Post> getPosts() {
