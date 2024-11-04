@@ -15,9 +15,8 @@ import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.SecurityContext;
 import org.eclipse.microprofile.jwt.Claim;
 import org.eclipse.microprofile.jwt.Claims;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.eclipse.microprofile.jwt.JsonWebToken;
-import org.springframework.http.ResponseEntity;
+
 
 import java.util.List;
 

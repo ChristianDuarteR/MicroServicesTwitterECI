@@ -1,18 +1,17 @@
 package co.edu.escuelaing.microservices.model;
 
 
-import lombok.AllArgsConstructor;
+import io.quarkus.mongodb.panache.common.MongoEntity;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.bson.codecs.pojo.annotations.BsonId;
+
 
 import java.util.List;
 
 @NoArgsConstructor
-@AllArgsConstructor
-@Document("User")
+@MongoEntity(collection = "User")
 public class User{
-    @Id
+    @BsonId
     private String id;
     private String userName;
     private String fullName;

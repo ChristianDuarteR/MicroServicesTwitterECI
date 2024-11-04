@@ -4,22 +4,25 @@ import co.edu.escuelaing.microservices.model.Post;
 import co.edu.escuelaing.microservices.model.Stream;
 import co.edu.escuelaing.microservices.model.User;
 import co.edu.escuelaing.microservices.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Service
+@ApplicationScoped
 public class UserServicesMap implements UserService{
-    @Autowired
+    @Inject
     UserRepository userRepository;
 
 
     @Override
     public User saveUser(String email, String userName, String fullName) {
-        return userRepository.save(new User(UUID.randomUUID().toString(),userName,fullName,email,new ArrayList<>()));
+        User newUser = new User(UUID.randomUUID().toString(),userName,fullName,email,new ArrayList<>());
+        userRepository.persist(newUser);
+        return newUser;
     }
 
     @Override
@@ -39,8 +42,9 @@ public class UserServicesMap implements UserService{
 
     @Override
     public List<User> getUsers() {
-        return userRepository.findAll();
+        return userRepository.findAll().list();
     }
+
 
     @Override
     public void deleteUser(String email) {

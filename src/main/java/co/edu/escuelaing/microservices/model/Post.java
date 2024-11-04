@@ -1,6 +1,6 @@
 package co.edu.escuelaing.microservices.model;
 
-import io.quarkus.mongodb.panache.PanacheMongoEntity;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,7 +8,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Post extends PanacheMongoEntity {
+public class Post{
 
     private String postId;
     private String content;

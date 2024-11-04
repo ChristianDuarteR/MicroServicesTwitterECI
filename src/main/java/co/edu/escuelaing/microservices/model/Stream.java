@@ -2,16 +2,13 @@ package co.edu.escuelaing.microservices.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
 
-import java.beans.ConstructorProperties;
+
 import java.util.List;
-import java.util.UUID;
 
 @Getter
 @Setter
 public class Stream {
-    @Id
     private String streamId;
     private List<Post> posts;
 
