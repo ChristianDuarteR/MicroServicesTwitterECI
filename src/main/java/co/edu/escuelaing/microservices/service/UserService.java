@@ -18,6 +18,8 @@ public interface UserService {
     void newPostToStream(String email, String streamId, Post post);
     /*READ*/
     User getUser(String email);
+
+    Stream getStreamId(String idString, String email ); 
     List<User> getUsers();
     /*UPDATE (OMITIDO)*/
     /*DELETE*/

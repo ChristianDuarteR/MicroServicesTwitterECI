@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.arjuna.ats.internal.jdbc.drivers.modifiers.list;
+
 @ApplicationScoped
 public class UserServicesMap implements UserService{
     @Inject
@@ -34,6 +36,26 @@ public class UserServicesMap implements UserService{
         streams.add(stream);
         return stream;
     }
+
+    @Override
+    public Stream getStreamId( String idString, String email ){
+        User user = userRepository.findUserByEmail(email);
+        List<Stream> streams = user.getStreams(); 
+        Stream stream= getStream(idString, streams); 
+        return stream;
+    }
+
+    private Stream getStream (String idString, List<Stream> lista){
+        
+        for (int i=0; i<lista.size(); i++){
+            if (idString.equals(lista.get(i).getStreamId())){
+
+                return lista.get(i);
+            }
+        }
+         return null;
+    }
+
 
     @Override
     public Post newPost(PostDTO postDTO){
