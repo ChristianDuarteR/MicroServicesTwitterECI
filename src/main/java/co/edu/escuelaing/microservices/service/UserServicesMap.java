@@ -1,5 +1,6 @@
 package co.edu.escuelaing.microservices.service;
 
+import co.edu.escuelaing.microservices.dto.PostDTO;
 import co.edu.escuelaing.microservices.model.Post;
 import co.edu.escuelaing.microservices.model.Stream;
 import co.edu.escuelaing.microservices.model.User;
@@ -11,6 +12,8 @@ import jakarta.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import com.arjuna.ats.internal.jdbc.drivers.modifiers.list;
 
 @ApplicationScoped
 public class UserServicesMap implements UserService{
@@ -27,12 +30,44 @@ public class UserServicesMap implements UserService{
 
     @Override
     public Stream newStream(String email) {
-        return null;
+        User user = userRepository.findUserByEmail(email);
+        Stream stream = new Stream(UUID.randomUUID().toString(), new ArrayList<Post>());
+        List<Stream> streams = user.getStreams();
+        streams.add(stream);
+        return stream;
     }
 
     @Override
-    public Post newPostToStream(String email, String streamId, Post post) {
-        return null;
+    public Stream getStreamId( String idString, String email ){
+        User user = userRepository.findUserByEmail(email);
+        List<Stream> streams = user.getStreams(); 
+        Stream stream= getStream(idString, streams); 
+        return stream;
+    }
+
+    private Stream getStream (String idString, List<Stream> lista){
+        
+        for (int i=0; i<lista.size(); i++){
+            if (idString.equals(lista.get(i).getStreamId())){
+
+                return lista.get(i);
+            }
+        }
+         return null;
+    }
+
+
+    @Override
+    public Post newPost(PostDTO postDTO){
+        return new Post(UUID.randomUUID().toString(),postDTO.getContent(), postDTO.getCreatedAt());
+    }
+
+    @Override
+    public void newPostToStream(String email, String streamId, Post post) {
+        User user = userRepository.findUserByEmail(email);
+        Stream stream = user.getStreams().get(Integer.parseInt(streamId));
+        List<Post> posts = stream.getPosts();
+        posts.add(post);
     }
 
     @Override
