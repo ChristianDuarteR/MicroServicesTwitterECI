@@ -1,5 +1,6 @@
 package co.edu.escuelaing.microservices.service;
 
+import co.edu.escuelaing.microservices.dto.PostDTO;
 import co.edu.escuelaing.microservices.model.Post;
 import co.edu.escuelaing.microservices.model.Stream;
 import co.edu.escuelaing.microservices.model.User;
@@ -27,12 +28,24 @@ public class UserServicesMap implements UserService{
 
     @Override
     public Stream newStream(String email) {
-        return null;
+        User user = userRepository.findUserByEmail(email);
+        Stream stream = new Stream(UUID.randomUUID().toString(), new ArrayList<Post>());
+        List<Stream> streams = user.getStreams();
+        streams.add(stream);
+        return stream;
     }
 
     @Override
-    public Post newPostToStream(String email, String streamId, Post post) {
-        return null;
+    public Post newPost(PostDTO postDTO){
+        return new Post(UUID.randomUUID().toString(),postDTO.getContent(), postDTO.getCreatedAt());
+    }
+
+    @Override
+    public void newPostToStream(String email, String streamId, Post post) {
+        User user = userRepository.findUserByEmail(email);
+        Stream stream = user.getStreams().get(Integer.parseInt(streamId));
+        List<Post> posts = stream.getPosts();
+        posts.add(post);
     }
 
     @Override
