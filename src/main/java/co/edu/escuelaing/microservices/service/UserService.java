@@ -9,17 +9,15 @@ import java.util.List;
 public interface UserService {
 
     /*CREATE*/
-    User saveUser(User user);
-    Stream newStream(String userId, Stream stream);
-    Post newPostToStream(String userId, String streamId, Post post);
+    User saveUser(String email,String userName,String fullName);
+    Stream newStream(String email);
+    Post newPostToStream(String email, String streamId, Post post);
     /*READ*/
-    User getUser(String userId);
+    User getUser(String email);
     List<User> getUsers();
-    /*UPDATE*/
-    void updateUser(String userId,User user);
-    void updatePost(String userId, String streamId, Post post);
-    /**/
-    void deleteUser(String userId);
-    void deleteStream(String userId, String streamId);
-    void deletePost(String userId,String streamId,String postId);
+    /*UPDATE (OMITIDO)*/
+    /*DELETE*/
+    void deleteUser(String email);
+    void deleteStream(String email, String streamId);
+    void deletePost(String email,String streamId,String postId);
 }

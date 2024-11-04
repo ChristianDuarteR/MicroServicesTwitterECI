@@ -7,7 +7,9 @@ import co.edu.escuelaing.microservices.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class UserServicesMap implements UserService{
@@ -16,52 +18,42 @@ public class UserServicesMap implements UserService{
 
 
     @Override
-    public User saveUser(User user) {
-        return userRepository.save(user);
+    public User saveUser(String email, String userName, String fullName) {
+        return userRepository.save(new User(UUID.randomUUID().toString(),userName,fullName,email,new ArrayList<>()));
     }
 
     @Override
-    public Stream newStream(String userId, Stream stream) {
+    public Stream newStream(String email) {
         return null;
     }
 
     @Override
-    public Post newPostToStream(String userId, String streamId, Post post) {
+    public Post newPostToStream(String email, String streamId, Post post) {
         return null;
     }
 
     @Override
-    public User getUser(String userId) {
-        return null;
+    public User getUser(String email) {
+        return userRepository.findUserByEmail(email);
     }
 
     @Override
     public List<User> getUsers() {
-        return null;
+        return userRepository.findAll();
     }
 
     @Override
-    public void updateUser(String userId, User user) {
-
-    }
-
-    @Override
-    public void updatePost(String userId, String streamId, Post post) {
+    public void deleteUser(String email) {
 
     }
 
     @Override
-    public void deleteUser(String userId) {
+    public void deleteStream(String email, String streamId) {
 
     }
 
     @Override
-    public void deleteStream(String userId, String streamId) {
-
-    }
-
-    @Override
-    public void deletePost(String userId, String streamId, String postId) {
+    public void deletePost(String email, String streamId, String postId) {
 
     }
 }
