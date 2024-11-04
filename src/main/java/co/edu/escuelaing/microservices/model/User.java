@@ -31,4 +31,14 @@ public class User{
         this.streams = streams;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", userName='" + userName + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", email='" + email + '\'' +
+                ", streams=" + streams.toString() +
+                '}';
+    }
 }

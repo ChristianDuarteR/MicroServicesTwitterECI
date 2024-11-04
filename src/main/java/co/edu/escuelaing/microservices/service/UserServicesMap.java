@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import com.arjuna.ats.internal.jdbc.drivers.modifiers.list;
+import static java.util.Arrays.stream;
 
 @ApplicationScoped
 public class UserServicesMap implements UserService{
@@ -32,28 +32,28 @@ public class UserServicesMap implements UserService{
     public Stream newStream(String email) {
         User user = userRepository.findUserByEmail(email);
         Stream stream = new Stream(UUID.randomUUID().toString(), new ArrayList<Post>());
-        List<Stream> streams = user.getStreams();
-        streams.add(stream);
+        user.getStreams().add(stream);
+        userRepository.update(user);
         return stream;
     }
 
     @Override
-    public Stream getStreamId( String idString, String email ){
+    public Stream getStreamId( String streamId, String email ){
         User user = userRepository.findUserByEmail(email);
-        List<Stream> streams = user.getStreams(); 
-        Stream stream= getStream(idString, streams); 
-        return stream;
+        List<Stream> streams = user.getStreams();
+        return getStream(streamId, streams);
     }
 
-    private Stream getStream (String idString, List<Stream> lista){
-        
-        for (int i=0; i<lista.size(); i++){
-            if (idString.equals(lista.get(i).getStreamId())){
+    private Stream getStream (String streamId, List<Stream> streams){
 
-                return lista.get(i);
+        Stream streamToReturn = null;
+        for (Stream stream : streams) {
+            System.out.println("STREAM: " + stream);
+            if (streamId.equals(stream.getStreamId())) {
+                 streamToReturn = stream;
             }
         }
-         return null;
+        return streamToReturn;
     }
 
 
@@ -65,9 +65,9 @@ public class UserServicesMap implements UserService{
     @Override
     public void newPostToStream(String email, String streamId, Post post) {
         User user = userRepository.findUserByEmail(email);
-        Stream stream = user.getStreams().get(Integer.parseInt(streamId));
-        List<Post> posts = stream.getPosts();
-        posts.add(post);
+        Stream stream = getStream(streamId, user.getStreams());
+        stream.getPosts().add(post);
+        userRepository.update(user);
     }
 
     @Override

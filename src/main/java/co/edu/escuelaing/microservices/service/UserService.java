@@ -16,6 +16,8 @@ public interface UserService {
     Post newPost(PostDTO postDTO);
 
     void newPostToStream(String email, String streamId, Post post);
+
+
     /*READ*/
     User getUser(String email);
 
