@@ -2,6 +2,8 @@ package co.edu.escuelaing.microservices.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.bson.codecs.pojo.annotations.BsonCreator;
+import org.bson.codecs.pojo.annotations.BsonProperty;
 
 
 import java.util.List;
@@ -9,12 +11,20 @@ import java.util.List;
 @Getter
 @Setter
 public class Stream {
+
+    @BsonProperty("streamId") // Anotación para mapear el campo en MongoDB
     private String streamId;
+
+    @BsonProperty("posts") // Anotación para mapear el campo en MongoDB
     private List<Post> posts;
 
-
-    public Stream(String id, List<Post> posts) {
-        this.streamId = id;
+    // Constructor con BsonCreator y BsonProperty
+    @BsonCreator
+    public Stream(
+            @BsonProperty("streamId") String streamId,
+            @BsonProperty("posts") List<Post> posts
+    ) {
+        this.streamId = streamId;
         this.posts = posts;
     }
 

@@ -44,7 +44,7 @@ public class UserController {
 
     @GET
     @Path("/")
-    @RolesAllowed({ "User", "Admin" })
+    @RolesAllowed({ "user", "admin" })
     @Produces(MediaType.APPLICATION_JSON)
     public User getUserInfo(@Context SecurityContext ctx) throws SecurityException {
         System.out.println(getResponseString(ctx));
@@ -101,8 +101,9 @@ public class UserController {
         return String.format("hello %s,"
                         + " isHttps: %s,"
                         + " authScheme: %s,"
-                        + " hasJWT: %s",
-                name, ctx.isSecure(), ctx.getAuthenticationScheme(), hasJwt());
+                        + " hasJWT: %s"
+                        + " email: %s",
+                name, ctx.isSecure(), ctx.getAuthenticationScheme(), hasJwt(),email);
     }
 
     private boolean hasJwt() {

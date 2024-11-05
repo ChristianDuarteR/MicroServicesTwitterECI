@@ -1997,6 +1997,34 @@
     "realmRoles" : [ "confidential", "user" ],
     "notBefore" : 0,
     "groups" : [ ]
+  },{
+    "id": "b5d7d1a0-2f76-4d3e-80d2-e35a2f123456",
+    "username": "christianDuarte",
+    "enabled": true,
+    "totp": false,
+    "emailVerified": false,
+    "email": "christian@gmail.com",
+    "firstName": "Christian",
+    "lastName": "",
+    "credentials": [
+      {
+        "type": "password",
+        "hashedSaltedValue": "+Vi+IzASpLLG0AGJ3XPUdVdIHC6kVw6Wu3yoH5VOlV4=",
+        "salt": "QNN1bKZa6JHcSjX0hZANBQ==",
+        "hashIterations": 27500,
+        "counter": 0,
+        "algorithm": "pbkdf2-sha256",
+        "digits": 0,
+        "period": 0,
+        "createdDate": 1554245879227,
+        "config": {}
+      }
+    ],
+    "disableableCredentialTypes": ["password"],
+    "requiredActions": [],
+    "realmRoles": ["confidential", "user"],
+    "notBefore": 0,
+    "groups": []
   }],
   "keycloakVersion" : "19.0.1",
   "userManagedAccessAllowed" : false,
