@@ -1,4 +1,4 @@
-# twittereci
+# Twittereci
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
@@ -64,3 +64,24 @@ If you want to learn more about building native executables, please consult <htt
 Easily start your REST Web Services
 
 [Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+
+## OpenID Connect
+
+## OpenID Connect
+
+Our project leverages OpenID Connect and Keycloak for secure management of credentials. After setting up the project on your local machine, log in using one of the available accounts to obtain an access token for your API requests.
+
+To get your access token, visit the following link: [Keycloak Provider](http://localhost:8080/q/dev-ui/io.quarkus.quarkus-oidc/keycloak-provider) and click on **Log into Single Page Application**. Make sure to copy the generated access token.
+
+You can now make API requests by including the token as a **Bearer** token. If you're using Postman, here’s how to add the token in the Authorization tab:
+
+![Postman Example](content/postmanExample.png)
+
+### User Accounts
+
+Here are the available user credentials for testing:
+
+1. **Username:** christian@gmail.com  
+   **Password:** user1
+
+
