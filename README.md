@@ -68,6 +68,10 @@ Easily start your REST Web Services
 
 ## OpenID Connect
 
+```shell script
+docker run --name keycloak -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin -p 8180:8080 quay.io/keycloak/keycloak:26.0.5 start-dev
+```
+
 Our project leverages OpenID Connect and Keycloak for secure management of credentials. After setting up the project on your local machine, log in using one of the available accounts to obtain an access token for your API requests.
 
 To get your access token, visit the following link: [Keycloak Provider](http://localhost:8080/q/dev-ui/io.quarkus.quarkus-oidc/keycloak-provider) and click on **Log into Single Page Application**. Make sure to copy the generated access token.
