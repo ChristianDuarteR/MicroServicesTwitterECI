@@ -43,6 +43,9 @@ public class UserController {
         return userServices.getUsers();
     }
 
+
+   
+
     @GET
     @Path("/")
     @RolesAllowed({ "User", "Admin" })
@@ -89,7 +92,14 @@ public class UserController {
                     .build();
         }
     }
-
+ 
+    @GET
+    @Path("/user/{email}")
+    @PermitAll
+    @Produces(MediaType.APPLICATION_JSON)
+    public User getUser(@PathParam("email") String email){
+        return userServices.getUser(email);
+    }
 
     @POST
     @Path("/newPost/{email}")
