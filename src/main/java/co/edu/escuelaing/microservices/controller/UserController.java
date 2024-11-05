@@ -1,7 +1,11 @@
 package co.edu.escuelaing.microservices.controller;
 
+import co.edu.escuelaing.microservices.dto.PostDTO;
+import co.edu.escuelaing.microservices.dto.StreamDTO;
+import co.edu.escuelaing.microservices.dto.UserDTO;
 import co.edu.escuelaing.microservices.exception.SecurityException;
 import co.edu.escuelaing.microservices.model.Post;
+import co.edu.escuelaing.microservices.model.Stream;
 import co.edu.escuelaing.microservices.model.User;
 import co.edu.escuelaing.microservices.service.UserServicesMap;
 import jakarta.annotation.security.PermitAll;
@@ -9,10 +13,7 @@ import jakarta.annotation.security.RolesAllowed;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.Context;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
-import jakarta.ws.rs.core.SecurityContext;
+import jakarta.ws.rs.core.*;
 import org.eclipse.microprofile.jwt.Claim;
 import org.eclipse.microprofile.jwt.Claims;
 import org.eclipse.microprofile.jwt.JsonWebToken;
@@ -88,6 +89,52 @@ public class UserController {
                     .build();
         }
     }
+
+
+    @POST
+    @Path("/newPost/{email}")
+    @RolesAllowed({ "USER"," ADMIN "})
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response createStream(@PathParam("email") String email, PostDTO postDTO){
+        try {
+            Stream newStream = userServices.newStream(email);
+            Post newPost = userServices.newPost(postDTO);
+            userServices.newPostToStream(email, newStream.getStreamId(), newPost);
+
+            
+            return Response.status(Response.Status.CREATED)
+                    .entity(newStream)
+                    .build();
+        } catch (Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity("Error creating the stream.")
+                    .build();
+        }
+    }
+
+
+    @POST
+    @Path("/newPostToStream/{emailComment}/{emailOwner}/{idStream}")
+    @RolesAllowed({ "USER"," ADMIN "})
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response createSubStream(@PathParam("emailComment") String emailComment,@PathParam("emailOwner") String emailOwner,@PathParam("idStream") String idStream,  PostDTO postDTO){
+        try {
+
+            Stream newStream = userServices.getStreamId(idStream, emailOwner);
+            Post newPost = userServices.newPost(postDTO);
+            userServices.newPostToStream(emailComment, newStream.getStreamId(), newPost);
+            return Response.status(Response.Status.CREATED)
+                    .entity(newStream)
+                    .build();
+        } catch (Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity("Error creating the stream.")
+                    .build();
+        }
+    }
+
 
     private String getResponseString(SecurityContext ctx) {
         String name;

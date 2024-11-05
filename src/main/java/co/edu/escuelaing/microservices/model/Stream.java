@@ -1,5 +1,6 @@
 package co.edu.escuelaing.microservices.model;
 
+import io.quarkus.mongodb.panache.common.MongoEntity;
 import lombok.Getter;
 import lombok.Setter;
 import org.bson.codecs.pojo.annotations.BsonCreator;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@MongoEntity(collection = "Stream")
 public class Stream {
 
     @BsonProperty("streamId") // Anotación para mapear el campo en MongoDB
@@ -17,6 +19,7 @@ public class Stream {
 
     @BsonProperty("posts") // Anotación para mapear el campo en MongoDB
     private List<Post> posts;
+
 
     // Constructor con BsonCreator y BsonProperty
     @BsonCreator

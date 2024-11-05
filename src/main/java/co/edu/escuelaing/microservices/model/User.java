@@ -2,14 +2,17 @@ package co.edu.escuelaing.microservices.model;
 
 
 import io.quarkus.mongodb.panache.common.MongoEntity;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.bson.codecs.pojo.annotations.BsonCreator;
+import lombok.Setter;
 import org.bson.codecs.pojo.annotations.BsonId;
 import org.bson.codecs.pojo.annotations.BsonProperty;
 
 
 import java.util.List;
 
+@Setter
 @NoArgsConstructor
 @MongoEntity(collection = "User")
 public class User {
