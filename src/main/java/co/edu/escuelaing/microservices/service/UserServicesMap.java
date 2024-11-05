@@ -56,12 +56,12 @@ public class UserServicesMap implements UserService{
 
 
     @Override
-    public Post newPost(PostDTO postDTO){
+    public Post newPost(String email, PostDTO postDTO){
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         String dateString = formatter.format(date);
 
-        return new Post(UUID.randomUUID().toString(),postDTO.getContent(), dateString);
+        return new Post(UUID.randomUUID().toString(),postDTO.getContent(), dateString, email);
     }
 
 

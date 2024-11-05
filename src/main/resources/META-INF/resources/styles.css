@@ -1,0 +1,86 @@
+/* Estilos CSS */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    color: #4a4a8c;
+}
+
+.new-stream {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.new-stream input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.new-stream button {
+    padding: 10px 20px;
+    background-color: #4a4a8c;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.user {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 15px auto;
+    width: 80%;
+    background-color: #fff;
+}
+
+.stream {
+    margin-left: 20px;
+    padding-left: 10px;
+    border-left: 2px solid #4a4a8c;
+    margin-top: 10px;
+}
+
+.post {
+    margin-left: 20px;
+    padding: 5px;
+    background-color: #f9f9ff;
+    border-radius: 3px;
+    border: 1px solid #eee;
+    margin-top: 5px;
+}
+
+.post p {
+    margin: 5px 0;
+}
+
+.comment-section {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.comment-section input[type="text"] {
+    flex: 1;
+    padding: 5px;
+    margin-right: 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.comment-section button {
+    padding: 5px 10px;
+    background-color: #4a4a8c;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}

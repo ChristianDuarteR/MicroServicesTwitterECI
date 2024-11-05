@@ -13,7 +13,7 @@ public interface UserService {
     User saveUser(String email,String userName,String fullName);
     Stream newStream(String email);
 
-    Post newPost(PostDTO postDTO);
+    Post newPost(String email, PostDTO postDTO);
 
     void newPostToStream(String email, String streamId, Post post);
 

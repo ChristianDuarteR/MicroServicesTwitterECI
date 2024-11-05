@@ -101,14 +101,15 @@ public class UserController {
     }
 
     @POST
-    @Path("/newPost/{email}")
+    @Path("/newPost")
     @PermitAll
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createStream(@PathParam("email") String email, PostDTO postDTO){
+    public Response createStream(@Context SecurityContext ctx, PostDTO postDTO){
+        System.out.println(ctx);
         try {
             Stream newStream = userServices.newStream(email);
-            Post newPost = userServices.newPost(postDTO);
+            Post newPost = userServices.newPost(email, postDTO);
             userServices.newPostToStream(email, newStream.getStreamId(), newPost);
             
             return Response.status(Response.Status.CREATED)
@@ -124,17 +125,19 @@ public class UserController {
 
 
     @POST
-    @Path("/newPostToStream/{emailComment}/{emailOwner}/{idStream}")
+    @Path("/newPostToStream/{emailOwner}/{idStream}")
     @PermitAll
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createSubStream(@PathParam("emailComment") String emailComment, // Deberia usarse para saber quien hizo ese POST
+    public Response createSubStream(@Context SecurityContext ctx,
                                     @PathParam("emailOwner") String emailOwner,
                                     @PathParam("idStream") String idStream,
                                     PostDTO postDTO){
+        System.out.println(ctx);
+
         try {
             Stream newStream = userServices.getStreamId(idStream, emailOwner);
-            Post newPost = userServices.newPost(postDTO);
+            Post newPost = userServices.newPost(email, postDTO);
             userServices.newPostToStream(emailOwner, newStream.getStreamId(), newPost);
             return Response.status(Response.Status.CREATED)
                     .entity(newStream)

@@ -17,4 +17,6 @@ public class PostDTO {
 
     private String createdAt;
 
+    private String author;
+
 }
