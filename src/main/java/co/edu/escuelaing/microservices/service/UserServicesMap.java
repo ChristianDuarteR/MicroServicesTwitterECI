@@ -51,7 +51,6 @@ public class UserServicesMap implements UserService{
                  break;
             }
         }
-
         return streamToReturn;
     }
 
@@ -64,6 +63,7 @@ public class UserServicesMap implements UserService{
 
         return new Post(UUID.randomUUID().toString(),postDTO.getContent(), dateString);
     }
+
 
     @Override
     public void newPostToStream(String email, String streamId, Post post) {

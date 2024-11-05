@@ -1,7 +1,6 @@
 package co.edu.escuelaing.microservices.controller;
 
 import co.edu.escuelaing.microservices.dto.PostDTO;
-import co.edu.escuelaing.microservices.dto.StreamDTO;
 import co.edu.escuelaing.microservices.dto.UserDTO;
 import co.edu.escuelaing.microservices.exception.SecurityException;
 import co.edu.escuelaing.microservices.model.Post;
@@ -106,6 +105,7 @@ public class UserController {
                     .entity(newStream)
                     .build();
         } catch (Exception e) {
+            e.printStackTrace();
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                     .entity("Error creating the stream.")
                     .build();
