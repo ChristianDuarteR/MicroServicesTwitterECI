@@ -14,4 +14,7 @@ import java.util.Date;
 public class PostDTO {
 
     private String content;
+
+    private String createdAt;
+
 }
