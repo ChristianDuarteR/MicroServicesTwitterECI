@@ -1,5 +1,4 @@
-package co.edu.escuelaing.microservices.controller;
-
+//package co.edu.escuelaing.microservices.controller;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -10,6 +9,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
+<<<<<<< HEAD
 @Path("/")
 public class GreetingResource {
 
@@ -32,3 +32,15 @@ public Response prueba(@PathParam("user") String user) {
 
 
 }
+=======
+//@Path("/")
+//public class GreetingResource {
+//
+//    @GET
+//    public Response redirigirAIndex() {
+//        return Response.status(Response.Status.FOUND)
+//                       .header("Location", "/auth.html")
+//                       .build();
+//    }
+//}
+>>>>>>> 3c03c88058550cb2599bd13abd288a67422beb83
