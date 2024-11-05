@@ -118,11 +118,14 @@ public class UserController {
     @PermitAll
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createSubStream(@PathParam("emailComment") String emailComment,@PathParam("emailOwner") String emailOwner,@PathParam("idStream") String idStream,  PostDTO postDTO){
+    public Response createSubStream(@PathParam("emailComment") String emailComment, // Deberia usarse para saber quien hizo ese POST
+                                    @PathParam("emailOwner") String emailOwner,
+                                    @PathParam("idStream") String idStream,
+                                    PostDTO postDTO){
         try {
             Stream newStream = userServices.getStreamId(idStream, emailOwner);
             Post newPost = userServices.newPost(postDTO);
-            userServices.newPostToStream(emailComment, newStream.getStreamId(), newPost);
+            userServices.newPostToStream(emailOwner, newStream.getStreamId(), newPost);
             return Response.status(Response.Status.CREATED)
                     .entity(newStream)
                     .build();

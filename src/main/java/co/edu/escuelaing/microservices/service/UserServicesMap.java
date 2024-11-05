@@ -11,6 +11,7 @@ import jakarta.inject.Inject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 import static java.util.Arrays.stream;
@@ -45,14 +46,16 @@ public class UserServicesMap implements UserService{
     }
 
     private Stream getStream (String streamId, List<Stream> streams){
-
         Stream streamToReturn = null;
         for (Stream stream : streams) {
-            System.out.println("STREAM: " + stream);
-            if (streamId.equals(stream.getStreamId())) {
+            System.out.println("STREAM: " + stream.getStreamId());
+            if (Objects.equals(streamId, stream.getStreamId())) {
                  streamToReturn = stream;
+                 break;
             }
         }
+
+        System.out.println("El stream encontrado es: " + streamToReturn);
         return streamToReturn;
     }
 
@@ -64,6 +67,7 @@ public class UserServicesMap implements UserService{
 
     @Override
     public void newPostToStream(String email, String streamId, Post post) {
+        System.out.println(streamId);
         User user = userRepository.findUserByEmail(email);
         Stream stream = getStream(streamId, user.getStreams());
         stream.getPosts().add(post);
