@@ -9,10 +9,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import static java.util.Arrays.stream;
 
@@ -48,21 +46,23 @@ public class UserServicesMap implements UserService{
     private Stream getStream (String streamId, List<Stream> streams){
         Stream streamToReturn = null;
         for (Stream stream : streams) {
-            System.out.println("STREAM: " + stream.getStreamId());
             if (Objects.equals(streamId, stream.getStreamId())) {
                  streamToReturn = stream;
                  break;
             }
         }
 
-        System.out.println("El stream encontrado es: " + streamToReturn);
         return streamToReturn;
     }
 
 
     @Override
     public Post newPost(PostDTO postDTO){
-        return new Post(UUID.randomUUID().toString(),postDTO.getContent(), postDTO.getCreatedAt());
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        String dateString = formatter.format(date);
+
+        return new Post(UUID.randomUUID().toString(),postDTO.getContent(), dateString);
     }
 
     @Override

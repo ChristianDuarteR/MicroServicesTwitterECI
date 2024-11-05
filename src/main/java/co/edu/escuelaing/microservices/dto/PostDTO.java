@@ -12,5 +12,4 @@ import lombok.Setter;
 public class PostDTO {
 
     private String content;
-    private String createdAt;
 }
