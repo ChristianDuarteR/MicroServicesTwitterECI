@@ -2,6 +2,7 @@ package co.edu.escuelaing.microservices.model;
 
 import io.quarkus.mongodb.panache.common.MongoEntity;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.bson.codecs.pojo.annotations.BsonCreator;
 import org.bson.codecs.pojo.annotations.BsonProperty;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @MongoEntity(collection = "Stream")
 public class Stream {
 
@@ -31,19 +33,12 @@ public class Stream {
         this.posts = posts;
     }
 
-    public String getStreamId() {
-        return streamId;
-    }
 
-    public void setStreamId(String streamId) {
-        this.streamId = streamId;
-    }
-
-    public List<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(List<Post> posts) {
-        this.posts = posts;
+    @Override
+    public String toString() {
+        return "Stream{" +
+                "streamId='" + streamId + '\'' +
+                ", posts=" + posts +
+                '}';
     }
 }
