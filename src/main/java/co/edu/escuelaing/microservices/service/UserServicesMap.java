@@ -30,6 +30,7 @@ public class UserServicesMap implements UserService{
     @Override
     public Stream newStream(String email) {
         User user = userRepository.findUserByEmail(email);
+        System.out.println(user);
         Stream stream = new Stream(UUID.randomUUID().toString(), new ArrayList<Post>());
         user.getStreams().add(stream);
         userRepository.update(user);

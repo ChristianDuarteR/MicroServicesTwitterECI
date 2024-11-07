@@ -15,8 +15,9 @@ public class PostDTO {
 
     private String content;
 
-    private String createdAt;
 
-    private String author;
+    public String getContent() {
+        return content;
+    }
 
 }

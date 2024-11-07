@@ -15,16 +15,16 @@
                     Ingresar
                     <span class="underline"></span>
                 </button>
-                <form class="form form-login">
+                <form class="form form-login" onsubmit="getAccessToken(event)">
                     <fieldset>
-                        <legend>Porfavor ingresa tu usuario y contraseña para continuar.</legend>
+                        <legend>Por favor ingresa tu usuario y contraseña para continuar.</legend>
                         <div class="input-block">
-                            <label for="login-email">Correo</label>
-                            <input id="login-email" type="email" required>
+                            <label for="username">Nombre de usuario</label>
+                            <input id="username" type="text" required>
                         </div>
                         <div class="input-block">
-                            <label for="login-password">Contraseña</label>
-                            <input id="login-password" type="password" required>
+                            <label for="password">Contraseña</label>
+                            <input id="password" type="password" required>
                         </div>
                     </fieldset>
                     <button type="submit" class="btn-login">Ingresar</button>
@@ -60,15 +60,6 @@
             </div>
         </div>
     </section>
-    <script>
-        const switchers = [...document.querySelectorAll('.switcher')]
-        switchers.forEach(item => {
-            item.addEventListener('click', function() {
-                switchers.forEach(item => item.parentElement.classList.remove('is-active'))
-                this.parentElement.classList.add('is-active')
-            })
-        })
-
-    </script>
+    <script src="login.js"></script>
     </body>
 </html>
