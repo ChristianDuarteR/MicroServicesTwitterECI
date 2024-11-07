@@ -43,8 +43,6 @@ public class UserController {
     }
 
 
-   
-
     @GET
     @Path("/")
     @RolesAllowed({ "user", "admin" })
@@ -65,7 +63,7 @@ public class UserController {
 
     @POST
     @Path("/register")
-    @PermitAll
+    @RolesAllowed({"admin"})
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response createUser(UserDTO userDTO) {
@@ -92,28 +90,20 @@ public class UserController {
         }
     }
  
-    @GET
-    @Path("/user/{email}")
-    @PermitAll
-    @Produces(MediaType.APPLICATION_JSON)
-    public User getUser(@PathParam("email") String email){
-        return userServices.getUser(email);
-    }
 
     @POST
     @Path("/newPost")
-    @PermitAll
+    @RolesAllowed({ "user", "admin" })
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response createStream(@Context SecurityContext ctx, PostDTO postDTO){
-        System.out.println(ctx);
+        System.out.println(getResponseString(ctx));
         try {
             Stream newStream = userServices.newStream(email);
             Post newPost = userServices.newPost(email, postDTO);
             userServices.newPostToStream(email, newStream.getStreamId(), newPost);
-            
             return Response.status(Response.Status.CREATED)
-                    .entity(newStream)
+                    .entity(newPost)
                     .build();
         } catch (Exception e) {
             e.printStackTrace();
@@ -125,20 +115,18 @@ public class UserController {
 
 
     @POST
-    @Path("/newPostToStream/{emailOwner}/{idStream}")
-    @PermitAll
+    @Path("/newPostToStream/{idStream}")
+    @RolesAllowed({ "user", "admin" })
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response createSubStream(@Context SecurityContext ctx,
-                                    @PathParam("emailOwner") String emailOwner,
                                     @PathParam("idStream") String idStream,
                                     PostDTO postDTO){
-        System.out.println(ctx);
-
+        System.out.println(getResponseString(ctx));
         try {
-            Stream newStream = userServices.getStreamId(idStream, emailOwner);
+            Stream newStream = userServices.getStreamId(idStream, email);
             Post newPost = userServices.newPost(email, postDTO);
-            userServices.newPostToStream(emailOwner, newStream.getStreamId(), newPost);
+            userServices.newPostToStream(email, newStream.getStreamId(), newPost);
             return Response.status(Response.Status.CREATED)
                     .entity(newStream)
                     .build();

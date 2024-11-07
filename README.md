@@ -80,6 +80,17 @@ You can now make API requests by including the token as a **Bearer** token. If y
 
 ![Postman Example](content/postmanExample.png)
 
+You can also use the Swagger interface included in the project to test the API. Simply click on the Swagger UI link, which will take you to the Swagger API documentation page, where you can test all endpoints.
+
+![swagger.png](content%2Fswagger.png)
+
+Make sure that Swagger has the access token saved in the **Authorize** button. You should see something like this:
+
+![Authorizations.png](content%2FAuthorizations.png)
+
+If the access token is not present, copy it manually and paste it into the value field in the authorization modal.
+
+
 ### User Accounts
 
 Here are the available user credentials for testing:
