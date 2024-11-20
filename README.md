@@ -1,6 +1,27 @@
-# Twittereci
+# Twittereci🚀
+En este taller se desarrolló un prototipo inspirado en Twitter, inicialmente implementado con **Quarkus** como una solución monolítica. Posteriormente, se migró a una arquitectura de **microservicios** utilizando **AWS**, logrando una separación modular de funcionalidades clave:
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+## Arquitectura
+- **Microservicios con Lambda**: Gestión de usuarios, posts y streams, desplegados como funciones independientes.
+- **Autenticación segura**: Implementada con **Amazon Cognito** y **Keycloak** como proveedor OIDC.
+- **Frontend estático**: Hospedado en **Amazon S3** para una entrega escalable.
+- **API Gateway**: Como punto central para exponer y gestionar los endpoints.
+- **Persistencia**: Datos almacenados en **MongoDB**, ideal para manejar información flexible y escalable.
+  ![pruebas](ReadmeImages/estesi.drawio.png)
+
+  [VIDEO despliegue en AWS funcionando](https://drive.google.com/file/d/1TTNdBuQrmtI4xVxXxtvXiOIxMkesBUHz/view?usp=sharing)
+
+### Instalación
+
+1. Tener instalado Git en tu máquina local
+2. Elegir una carpeta en donde guardes tu proyecto
+3. abrir la terminal de GIT --> mediante el click derecho seleccionas Git bash here
+4. Clona el repositorio en tu máquina local:
+   ```bash
+   git clone https://github.com/ChristianDuarteR/MicroServicesTwitterECI.git
+   ```
+## Empezando
+
 
 If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
 
@@ -14,7 +35,7 @@ You can run your application in dev mode that enables live coding using:
 
 > **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
 
-## Packaging and running the application
+## Packaging and running the application/ Deployment
 
 The application can be packaged using:
 
@@ -98,4 +119,11 @@ Here are the available user credentials for testing:
 1. **Username:** christian@gmail.com  
    **Password:** user1
 
+## Built With
+* [Maven](https://maven.apache.org/) - Dependency Management
 
+## Authors
+
+* **Carolina Medina Acero** - [Medina95](https://github.com/Medina95)
+* **Juan Sebastián Camargo Sánchez** -  [SebSanUwU](https://github.com/SebSanUwU)
+* **Christian Javier Duarte R** -  [ChristianDuarteR]( https://github.com/ChristianDuarteR)
